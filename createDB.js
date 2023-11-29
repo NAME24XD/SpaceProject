@@ -1,0 +1,17 @@
+var MongoClient = require('mongodb').MongoClient
+const uri = "mongodb://localhost:27017/"
+const client = new MongoClient(uri)
+async function run() {
+    try {
+    await client.connect();
+    var database = client.db("space");
+    database.dropDatabase()
+    database = client.db("space");
+    const cats = database.collection("sp");
+    const result = await cats.insertOne({name:"Юпитер"});
+    console.log(`${result} documents were inserted`);
+} finally {
+await client.close();
+}
+}
+run()
