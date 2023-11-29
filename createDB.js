@@ -8,11 +8,11 @@ async function run() {
     var database = client.db("space");
     database.dropDatabase()
     database = client.db("space");
-    const cats = database.collection("sp");
-    const result = await cats.insertOne({name:"Юпитер"});
-    console.log(`${result} documents were inserted`);
+    const sp = database.collection("sp");
+    const result = await sp.insertMany(data);
+    console.log(`${result.insertedCount} documents were inserted`);
 } finally {
-await client.close();
+    await client.close();
 }
 }
 run()
