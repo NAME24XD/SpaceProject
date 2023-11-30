@@ -8,8 +8,8 @@ async function run() {
     var database = client.db("space");
     database.dropDatabase()
     database = client.db("space");
-    const sp = database.collection("sp");
-    const result = await sp.insertMany(data);
+    const sps = database.collection("sps");
+    const result = await sps.insertMany(data);
     console.log(`${result.insertedCount} documents were inserted`);
 } finally {
     await client.close();

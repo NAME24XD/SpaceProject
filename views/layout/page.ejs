@@ -26,9 +26,21 @@
                 </li>
             </ul>
             <ul class="navbar-nav navbar-right">
-                <li>
+                <!-- <li>
                     <a class="nav-link" href="/form">Войти</a>
-                </li>
+                </li> -->
+            <div class="dropdown">
+                <button class="dropbtn">Войти</button>
+                <div class="dropdown-content">
+                    <form action="#" method="get">
+                        <input type="text" placeholder="name" required>
+                        <input type="password" placeholder="password" required>
+                        <input type="email" placeholder="e-mail" required>
+                        <input type="submit" value="Войти">
+                        <input type="reset" value="Очистить">
+                    </form>
+                </div>
+            </div>
             </ul>
         </div>
     </nav>
