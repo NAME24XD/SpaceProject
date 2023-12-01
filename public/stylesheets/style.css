@@ -16,13 +16,15 @@ img{
   margin: 10px;
 }
 
-
-
 .dropbtn {
   background-color: #999999;
   color: white;
   padding: 16px;
   font-size: 16px;
+}
+
+.dropbtn, .dropdown-content, .dropdown-content input {
+  border-radius: 10px;
   border: none;
 }
 
@@ -47,10 +49,8 @@ img{
   padding: 12px 16px;
   margin: 5px;
   text-decoration: none;
-  /* display: block; */
-  border-radius: 10px;
   outline: none;
-
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
  
 .dropdown-content form{
@@ -59,10 +59,10 @@ img{
 
 .dropdown-content input[type="submit"], input[type="reset"]{
   background: #999999;
-  border: none;
+  color: #fff;
 }
 .dropdown-content input[type="submit"]:hover, input[type="reset"]:hover{
-  background: #b1b0b0;
+  background: #3a3a3a;
 }
 
 .dropdown:hover  .dropdown-content {
@@ -70,5 +70,5 @@ img{
 }
 
 .dropdown:hover .dropbtn {
-  background-color: #bbbbbb;
+  background: #3a3a3a;
 }

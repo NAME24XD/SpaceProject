@@ -1,19 +1,21 @@
 const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/test');
+const schema = new mongoose.Schema({ name: String });
 
-async function connectToDatabase() {
+schema.methods.spas = function () {
+  console.log(this.get("name") + " сказал boom");
+}
+
+const Space = mongoose.model('Space', schema);
+const sps = new Space({ name: 'Пушок' });
+
+const saveSpace = async () => {
   try {
-    await mongoose.connect('mongodb://localhost/test');
-    console.log('Успешное подключение к базе данных');
-
-    const spaceSchema = new mongoose.Schema({ name: String });
-    const Space = mongoose.model('Space', spaceSchema);
-
-    const space = new Space({ name: 'Квазар' });
-    await space.save();
-    console.log('Бум');
+    await sps.save();
+    sps.spas();
   } catch (error) {
-    console.error('Ошибка подключения к базе данных:', error);
+    console.error(error);
   }
 }
 
-connectToDatabase();
+saveSpace();
