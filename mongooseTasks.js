@@ -1,21 +1,30 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
-const schema = new mongoose.Schema({ name: String });
+mongoose.connect('mongodb://localhost/test1');
 
-schema.methods.spas = function () {
-  console.log(this.get("name") + " сказал boom");
-}
-
-const Space = mongoose.model('Space', schema);
-const sps = new Space({ name: 'Пушок' });
-
-const saveSpace = async () => {
-  try {
-    await sps.save();
-    sps.spas();
-  } catch (error) {
-    console.error(error);
+const CatSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true
+  },
+  nick: {
+    type: String,
+    required: true
   }
-}
+});
 
-saveSpace();
+const Cat = mongoose.model('Cat', CatSchema);
+
+const cat = new Cat({
+  title: "Квазар",
+  nick: "quasar"
+});
+
+console.log(cat);
+
+cat.save()
+  .then(savedCat => {
+    console.log(savedCat);
+  })
+  .catch(error => {
+    console.error(error);
+  });
