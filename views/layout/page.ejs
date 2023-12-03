@@ -15,16 +15,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/">Главная</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/mercury">Меркурий</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/mars">Марс</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/earth">Земля</a>
-                </li>
+                <% menu.forEach(space => { %>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/space/<%= space.nick %>"><%= space.title %></a>
+                    </li>
+                  <% }) %>
             </ul>
+
             <ul class="navbar-nav navbar-right">
                 <!-- <li>
                     <a class="nav-link" href="/form">Войти</a>
