@@ -1,15 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var Space = require("../models/space").Space
+var async = require("async")
 
-/* GET users listing. */
-// router.get('/', function(req, res, next) {
-//   res.send('Новый маршрутизатор, для маршрутов, начинающихся с space');
-// });
-
-// router.get("/:nick", function(req, res, next) {
-// res.send(req.params.nick);
-// });
 
 router.get('/:nick', async function(req, res, next) {
   try {
@@ -18,11 +11,8 @@ router.get('/:nick', async function(req, res, next) {
       Space.find({}, { _id: 0, title: 1, nick: 1 })
     ]);
   
-    // console.log(space.title)
-    // console.log(sps)
-
     if (!space) {
-      throw new Error("Нет такого");
+      throw new Error("Нет такой планеты во вселенной");
     }
     
     renderSpace(res, space.title, space.avatar, space.desc, sps);
