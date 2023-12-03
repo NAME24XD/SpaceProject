@@ -16,4 +16,14 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+/* GET home page. */
+router.get('/', function(req, res, next) {
+res.cookie('greeting',
+'Hi!!!').render('index'
+, { title:
+'Space'
+, menu:menu });
+});
+
+
 module.exports = router;
