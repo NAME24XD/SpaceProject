@@ -6,7 +6,7 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/space')
-var session = require("express-session")
+const session = require("express-session")
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -25,13 +25,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(session({
-  secret: "Space"
-  ,
+
+app.use(session({secret: "Galaxy",
   cookie:{maxAge:60*1000},
   resave: true,
-  saveUninitialized: true
+  saveUninitialized: true,
+  secure: true
   }))
+  
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/space', space);

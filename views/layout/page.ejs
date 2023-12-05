@@ -44,4 +44,25 @@
     
     <%- body %>
 </body>
+
+    <!-- <script>
+        if (document.cookie.split(';').filter((item) => item.trim().startsWith('_ga=')).length) {
+    console.log('Куки с именем "_ga" уже существует');
+    } else {
+    // Создаем куки с именем '_ga'
+    document.cookie = "_ga=GA1.2.1929734891.1627674222; max-age=31536000; SameSite=None; Secure";
+    console.log('Куки с именем "_ga" успешно добавлены');
+    }
+
+    if (document.cookie.split(';').filter((item) => item.trim().startsWith('greeting=')).length) {
+    const greetingCookie = document.cookie
+    .split('; ')
+    .find((row) => row.startsWith('greeting='))
+    .split('=')[1]; // Получаем значение куки 'greeting'
+    console.log('Значение куки "greeting":', greetingCookie);
+    } else {
+    console.log('Куки с именем "greeting" не найдены');
+    }
+    </script> -->
+
 </html>
