@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const Space = require("../models/space").Space;
-const User = require("../models/User").User;
+const User = require("./../models/User").User;
 
 
 /* GET home page. */  
