@@ -6,10 +6,7 @@ var async = require("async")
 
 router.get('/:nick', async function(req, res, next) {
   try {
-    const [space, sps] = await Promise.all([
-      Space.findOne({ nick: req.params.nick }),
-      Space.find({}, { _id: 0, title: 1, nick: 1 })
-    ]);
+    const [space, sps] = await Promise.all([Space.findOne({ nick: req.params.nick })]);
   
     if (!space) {
       throw new Error("Нет такой планеты во вселенной");
@@ -28,7 +25,6 @@ function renderSpace(res, title, picture, desc, sps) {
     title: title,
     picture: picture,
     desc: desc,
-    menu: sps
   });
 }
 

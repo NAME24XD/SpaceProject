@@ -12,15 +12,17 @@
     <nav class="navbar navbar-expand-sm bg-light navbar-light">
         <div class="container-fluid">
             <ul class="navbar-nav">
-                <li class="nav-item">
+                 <li class="nav-item">
                     <a class="nav-link" href="/">Главная</a>
                 </li>
-                <% menu.forEach(space => { %>
-                    <li class="nav-item">
-                      <a class="nav-link" href="/space/<%= space.nick %>"><%= space.title %></a>
-                    </li>
-                  <% }) %>
-            </ul>
+                <% if(typeof nav == 'object' && nav){ nav.forEach(function(space){
+                  %>
+                  <li class="nav-item">
+                  <a class="nav-link" href="/space/<%=space.nick%>"><%=space.title%></a>
+                  </li>
+                  <% })} %>
+              </ul>
+            
 
             <ul class="navbar-nav navbar-right">
                 <!-- <li>

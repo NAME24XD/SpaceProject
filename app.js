@@ -10,7 +10,7 @@ var session = require("express-session")
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var space = require('./routes/space');
+var spaceRouter = require('./routes/space');
 
 var app = express();
 
@@ -40,9 +40,10 @@ app.use(session({
     next()
   })
 
+app.use(require("./middleware/createMenu.js"));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/space', space);
+app.use('/space', spaceRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
