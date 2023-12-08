@@ -9,5 +9,5 @@ password: "qwerty"
 first_user.save().then((user) => {
     console.log(user);
   }).catch((err) => {
-    throw new Error('user not found');
+    throw err;
   });
