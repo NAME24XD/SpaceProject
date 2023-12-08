@@ -11,5 +11,9 @@ const Space = require("../models/space").Space
     catch (err) {next(err);}
 });
 
+/* GET login/registration page. */
+router.get('/logreg', function(req, res, next) {
+res.render('logreg',{title: 'Вход'});
+});
 
 module.exports = router;
