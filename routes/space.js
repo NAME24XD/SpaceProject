@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var Space = require("../models/space").Space
-var async = require("async")
+var async = require("async");
+const checkAuth = require('../middleware/checkAuth');
 
 
-router.get('/:nick', async function(req, res, next) {
+router.get('/:nick', checkAuth, async function(req, res, next) {
   try {
     const [space, sps] = await Promise.all([Space.findOne({ nick: req.params.nick })]);
   

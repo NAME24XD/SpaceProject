@@ -3,15 +3,15 @@ var Schema = mongoose.Schema
     var spaceSchema = new Schema({
     title: String,
     nick: {
-    type: String,
-    unique: true,
-    required: true
+        type: String,
+        unique: true,
+        required: true
     },
     avatar: String,
     desc: String,
     created:{
-    type:Date,
-    default:Date.now
+        type:Date,
+        default:Date.now
     }
-    })
+})
 module.exports.Space = mongoose.model("Space", spaceSchema)
