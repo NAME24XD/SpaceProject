@@ -1,11 +1,10 @@
-const Space = require("./../models/space").Space;
-module.exports = async function(req, res, next) {
-    try {
-      res.locals.nav = [];
+const db = require('./../mySQLConnect');
 
-    const result = await Space.find({}, { _id: 0, title: 1, nick: 1 });
+module.exports = function(req, res, next) {
+    res.locals.nav = [];
+    db.query('SELECT title, nick FROM spaces', function(err, result) {
+        if (err) throw err;
         res.locals.nav = result;
         next();
-    } catch (err) {
-      throw err;
-}};
+    });
+};
