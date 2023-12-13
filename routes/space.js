@@ -1,33 +1,57 @@
 var express = require('express');
 var router = express.Router();
-var Space = require("../models/space").Space
-var async = require("async");
-const checkAuth = require('../middleware/checkAuth');
+var db = require('../mySQLConnect.js');
+// var Space = require("../models/space").Space
+// const checkAuth = require('../middleware/checkAuth');
 
 
-router.get('/:nick', checkAuth, async function(req, res, next) {
-  try {
-    const [space, sps] = await Promise.all([Space.findOne({ nick: req.params.nick })]);
-  
-    if (!space) {
-      throw new Error("Нет такой планеты во вселенной");
-    }
-    
-    renderSpace(res, space.title, space.avatar, space.desc, sps);
-  } catch (err) {
-    next(err);
-  }
+router.get("/:nick", function(req, res, next) {
+  db.query(`SELECT * FROM spaces WHERE spaces.nick = '${req.params.nick}'`, (err,spaces) => {
+  if(err) {
+    console.log(err);
+    if(err) return next(err)
+    } else {
+      if(spaces.length == 0) return next(new Error("Такого пышного древа нет"))
+        var space = spaces[0];
+        res.render('space', {
+          title: space.title,
+          picture: space.avatar,
+          desc: space.about
+  })
+}
+})
 });
 
-function renderSpace(res, title, picture, desc, sps) {
-  console.log(sps);
-
-  res.render('space', {
-    title: title,
-    picture: picture,
-    desc: desc,
+router.get('/', function(req, res, next) {
+  res.send('<h1>Это экран для списка планет</h1>');
   });
-}
+  
+
+router.get("/:nick", function(req, res, next){
+  db.query(`SELECT * FROM space WHERE space.nick = '${req.params.nick}'`, (err, spaces) => {             
+      if(err) {
+          console.log(err);
+          if(err) return next(err)
+      } else {
+          if(spaces.length == 0) return next(new Error("Нет такой планеты во вселенной"))
+          var space = spaces[0];
+          res.render('space', {
+          title   : space.title,
+          picture : space.avatar,
+          about   : space.about
+      })}
+  })
+})
+
+// function renderSpace(res, title, picture, desc, sps) {
+//   console.log(sps);
+
+//   res.render('space', {
+//     title: title,
+//     picture: picture,
+//     desc: desc,
+//   });
+// }
 
 
 module.exports = router;
