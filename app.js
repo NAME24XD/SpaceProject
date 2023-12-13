@@ -5,12 +5,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
-// var mongoose = require('mongoose')
-// mongoose.connect('mongodb://localhost/space')
 var mysql2 = require('mysql2/promise');
 
 var session = require("express-session")
-// var MongoStore = require('connect-mongo');
 var MySQLStore = require('express-mysql-session')(session);
 
 var indexRouter = require('./routes/index');
@@ -52,13 +49,7 @@ app.use(session({
     maxAge          : 60*1000
   }
 }));
-// app.use(session({
-//   secret: "Space",
-//   cookie:{maxAge:60*1000},
-//   resave: true,
-//   saveUninitialized: true,
-//   store: MongoStore.create({mongoUrl: 'mongodb://localhost/space'})
-//   }))
+
 
   app.use(function(req,res,next){
     req.session.counter = req.session.counter +1 || 1
