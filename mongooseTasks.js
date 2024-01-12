@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/test1');
 
-const CatSchema = new mongoose.Schema({
+const SpaceSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true
@@ -12,18 +12,18 @@ const CatSchema = new mongoose.Schema({
   }
 });
 
-const Cat = mongoose.model('Cat', CatSchema);
+const Space = mongoose.model('Space', SpaceSchema);
 
-const cat = new Cat({
+const space = new Space({
   title: "Квазар",
   nick: "quasar"
 });
 
-console.log(cat);
+console.log(space);
 
-cat.save()
+space.save()
   .then(savedCat => {
-    console.log(savedCat);
+    console.log(savedSpace);
   })
   .catch(error => {
     console.error(error);
